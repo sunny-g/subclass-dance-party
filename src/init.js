@@ -52,6 +52,10 @@ $(document).ready(function(){
   }, 2000);
   });
 
+  $('.change').on('click', function(){
+    var pariah = window.dancers[Math.floor(Math.random() * window.dancers.length)];
+
+  });
 
 
 });

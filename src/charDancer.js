@@ -7,9 +7,3 @@ var CharDancer = function(top, left, timeBetweenSteps){
 CharDancer.prototype = Object.create(Dancer.prototype);
 CharDancer.prototype.constructor = CharDancer;
 
-CharDancer.prototype.grow = function() {
-  this.$node.animate({
-    height: "150px",
-    width: "150px"
-  }, 2000);
-};

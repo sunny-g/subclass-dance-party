@@ -14,7 +14,7 @@ Dancer.prototype.step = function(){
   // whose class it belongs to is decided by the 'this' within bind
   // when the Dancer.step.call() is invoked, this.step becomes the step func of the invoking context
   //
-
+  this.shuffle();
 };
 
 Dancer.prototype.setPosition = function(){
@@ -25,4 +25,21 @@ Dancer.prototype.setPosition = function(){
   this.$node.css(styleSettings);
 };
 
+Dancer.prototype.shuffle = function(){
+  if (this.top % 2 === 0) {
+    this.top+= Math.round(Math.random() * 25);
+  }
+  else {
+    this.top-= Math.round(Math.random() * 25);
+  }
+  if (this.left % 2 === 0) {
+    this.left += Math.round(Math.random() * 25);
+  } else {
+    this.left -= Math.round(Math.random() * 25);
+  }
 
+  this.$node.animate({
+    top: this.top,
+    left: this.left
+  }, 1000);
+};
