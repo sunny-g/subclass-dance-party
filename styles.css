@@ -3,7 +3,8 @@ body, html{
 }
 body{
   margin: 0px;
-  background-color:#444;
+  background-image: url('http://i43.tinypic.com/j9m4b4.png');
+  background-size: 100%;
   font-size: 18px;
 }
 body, a:link, a:visited, a:active{
@@ -24,4 +25,12 @@ body, a:link, a:visited, a:active{
   border:10px solid red;
   border-radius:10px;
   position:absolute;
+}
+
+span.charmander {
+  position: absolute;
+}
+.charImage {
+  height: 100px;
+  width: 100px;
 }
