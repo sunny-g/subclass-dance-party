@@ -1,7 +1,7 @@
 $(document).ready(function(){
   window.dancers = [];
 
-  $(".addDancerButton").on("click", function(event){
+  $(".addDancerButton").on("click", function(){
     /* This function sets up the click handlers for the create-dancer
      * buttons on index.html. You should only need to make one small change to it.
      * As long as the "data-dancer-maker-function-name" attribute of a
@@ -26,10 +26,26 @@ $(document).ready(function(){
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
       Math.random() * 1000,
-      Math.floor(Math.random()*16777215).toString(16)
+      Math.floor(Math.random()*16777215).toString(16) // creates random color
     );
+
+    window.dancers.push(dancer);
 
     $('body').append(dancer.$node);
   });
+
+$(".lineUp").on("click", function() {
+
+  window.dancers.forEach(function(dancer) {
+    dancer.$node.animate({
+      left: "-=" + (dancer.left - 20)
+    }, 3000);
+
+
+    // dancer.setPosition();
+  });
+
+});
+
 });
 

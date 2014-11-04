@@ -14,6 +14,9 @@ body, a:link, a:visited, a:active{
   padding:5px 12px;
   float:right;
 }
+.lineUp {
+  padding: 5px 12px;
+}
 .topbar{
   height:32px;
   background-color: #555;
