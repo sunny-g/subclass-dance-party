@@ -26,17 +26,52 @@ Dancer.prototype.setPosition = function(){
 };
 
 Dancer.prototype.shuffle = function(){
-  if (this.top % 2 === 0) {
-    this.top+= Math.round(Math.random() * 25);
-  }
-  else {
-    this.top-= Math.round(Math.random() * 25);
-  }
-  if (this.left % 2 === 0) {
-    this.left += Math.round(Math.random() * 25);
+
+  var distanceCheck = function(threshold){
+    // returns true if this dancer is close to the pariah
+    if (!window.pariah) {
+      return false;
+    }
+    var topDiff = this.top - window.pariah.top;
+    var leftDiff = this.left - window.pariah.left;
+    var tooClose = Math.abs(topDiff) < threshold || Math.abs(leftDiff) < threshold;
+
+    return [topDiff, leftDiff, tooClose];
+  };
+
+  var diffs = distanceCheck(100);
+  console.log(diffs);
+
+  if (!diffs[2]) {
+    // if we're not too close
+    if (this.top % 2 === 0) {
+      this.top += Math.round(Math.random() * 25);
+    } else {
+      this.top -= Math.round(Math.random() * 25);
+    }
+    if (this.left % 2 === 0) {
+      this.left += Math.round(Math.random() * 25);
+    } else {
+      this.left -= Math.round(Math.random() * 25);
+    }
   } else {
-    this.left -= Math.round(Math.random() * 25);
+    // if we're too close to the pariah
+    // console.log(topDiff, leftDiff);
+    var topDiff = diffs[0];
+    var leftDiff = diffs[1];
+
+    if (topDiff < 0) {
+      this.top -= 500;
+    } else {
+      this.top += 500;
+    }
+    if (leftDiff < 0) {
+      this.left -= 500;
+    } else {
+      this.left += 500;
+    }
   }
+
 
   this.$node.animate({
     top: this.top,

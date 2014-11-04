@@ -53,7 +53,11 @@ $(document).ready(function(){
   });
 
   $('.change').on('click', function(){
-    var pariah = window.dancers[Math.floor(Math.random() * window.dancers.length)];
+
+    window.pariah = window.dancers[Math.floor(Math.random() * window.dancers.length)];
+    window.pariah.$node.css({
+      border: '10px solid red'
+    });
 
   });
 
