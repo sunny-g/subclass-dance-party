@@ -1,8 +1,8 @@
 var Dancer = function(top, left, timeBetweenSteps){
   this.$node = $('<span class="dancer"></span>');
   this.timeBetweenSteps = timeBetweenSteps;
-  this.top = top;
-  this.left = left;
+  this.top = Math.round(top);
+  this.left = Math.round(left);
 
   this.setPosition();
   this.step();
@@ -13,6 +13,7 @@ Dancer.prototype.step = function(){
   // this.step is a method at some place
   // whose class it belongs to is decided by the 'this' within bind
   // when the Dancer.step.call() is invoked, this.step becomes the step func of the invoking context
+  //
 
 };
 

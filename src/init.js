@@ -34,18 +34,25 @@ $(document).ready(function(){
     $('body').append(dancer.$node);
   });
 
-$(".lineUp").on("click", function() {
+  $(".lineUp").on("click", function() {
 
-  window.dancers.forEach(function(dancer) {
-    dancer.$node.animate({
-      left: "-=" + (dancer.left - 20)
-    }, 3000);
+    window.dancers.forEach(function(dancer) {
+      dancer.$node.animate({
+        left: "-=" + (dancer.left - 20)
+      }, 3000);
+    });
 
-
-    // dancer.setPosition();
   });
 
-});
+
+  $("body").on("mouseover", '.charImage', function() {
+    $(this).animate({
+      height: "150px",
+      width: "150px"
+  }, 2000);
+  });
+
+
 
 });
 

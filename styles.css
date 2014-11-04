@@ -14,8 +14,9 @@ body, a:link, a:visited, a:active{
   padding:5px 12px;
   float:right;
 }
-.lineUp {
+.lineUp, .change {
   padding: 5px 12px;
+  margin-top: 5px;
 }
 .topbar{
   height:32px;
