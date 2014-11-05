@@ -44,7 +44,7 @@ Dancer.prototype.shuffle = function(){
   var diffs = distanceCheck.call(this, 200);
   // console.log(diffs);
 
-  if (!diffs[2]) {
+  if (!diffs[2] || this === window.pariah) {
     // if we're not too close
     if (this.top % 2 === 0) {
       this.top += Math.round(Math.random() * 25);
@@ -58,6 +58,9 @@ Dancer.prototype.shuffle = function(){
     }
   } else if (this !== window.pariah) {
     // if we're too close to the pariah
+
+    this.$node.stop(true, false);
+    // this stops the accumulation of animations and immediately moves dancer away from pariah
 
     var topDiff = diffs[0];
     var leftDiff = diffs[1];
@@ -78,6 +81,6 @@ Dancer.prototype.shuffle = function(){
   this.$node.animate({
     top: this.top,
     left: this.left
-  }, 100);
-  // this.$node.stop(true, true);
+  }, 1000);
+
 };

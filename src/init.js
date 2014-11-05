@@ -36,10 +36,18 @@ $(document).ready(function(){
 
   $(".lineUp").on("click", function() {
 
+    window.pariah.$node.css({
+      border: '0px'
+    });
+    delete window.pariah;
+
     window.dancers.forEach(function(dancer) {
-      dancer.$node.animate({
+      // dancer.$node.stop(true, true);
+      dancer.$node.animate({  // changes the view
         left: "-=" + (dancer.left - 20)
       }, 3000);
+      dancer.left = 20; // changes the model
+      dancer.$node.stop(true, true);
     });
 
   });
