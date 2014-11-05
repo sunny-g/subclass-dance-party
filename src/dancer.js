@@ -32,15 +32,17 @@ Dancer.prototype.shuffle = function(){
     if (!window.pariah) {
       return false;
     }
+    // console.log(this);
     var topDiff = this.top - window.pariah.top;
     var leftDiff = this.left - window.pariah.left;
-    var tooClose = Math.abs(topDiff) < threshold || Math.abs(leftDiff) < threshold;
+    // var tooClose = Math.abs(topDiff) < threshold && Math.abs(leftDiff) < threshold;
+    var tooClose = Math.sqrt(Math.pow(topDiff,2)+Math.pow(leftDiff,2)) < threshold;
 
     return [topDiff, leftDiff, tooClose];
   };
 
-  var diffs = distanceCheck(100);
-  console.log(diffs);
+  var diffs = distanceCheck.call(this, 200);
+  // console.log(diffs);
 
   if (!diffs[2]) {
     // if we're not too close
@@ -54,27 +56,28 @@ Dancer.prototype.shuffle = function(){
     } else {
       this.left -= Math.round(Math.random() * 25);
     }
-  } else {
+  } else if (this !== window.pariah) {
     // if we're too close to the pariah
-    // console.log(topDiff, leftDiff);
+
     var topDiff = diffs[0];
     var leftDiff = diffs[1];
+    console.log(topDiff, leftDiff);
 
     if (topDiff < 0) {
-      this.top -= 500;
+      this.top -= 100;
     } else {
-      this.top += 500;
+      this.top += 100;
     }
     if (leftDiff < 0) {
-      this.left -= 500;
+      this.left -= 100;
     } else {
-      this.left += 500;
+      this.left += 100;
     }
   }
-
 
   this.$node.animate({
     top: this.top,
     left: this.left
-  }, 1000);
+  }, 100);
+  // this.$node.stop(true, true);
 };

@@ -44,7 +44,6 @@ $(document).ready(function(){
 
   });
 
-
   $("body").on("mouseover", '.charImage', function() {
     $(this).animate({
       height: "150px",
@@ -54,7 +53,13 @@ $(document).ready(function(){
 
   $('.change').on('click', function(){
 
+    if (window.pariah) {
+      window.pariah.$node.css({
+        border: '0px'
+      });
+    }
     window.pariah = window.dancers[Math.floor(Math.random() * window.dancers.length)];
+    console.log(window.pariah);
     window.pariah.$node.css({
       border: '10px solid red'
     });
